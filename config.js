@@ -1,17 +1,21 @@
+
 const fs = require('fs');
+
 if (fs.existsSync('config.env')) require('dotenv').config({ path: './config.env' });
 
 function convertToBool(text, fault = 'true') {
     return text === fault ? true : false;
 }
 
-module.exports = {
+// --- ⚙️ VEXTER-MD CONFIGURATION ---
+const config = {
     // [1] General Settings
-    SESSION_ID: process.env.SESSION_ID || "XsYknKhJ#mcKqqNosv_JmmW6-d4m73l7TEd5nzSFtItAQktnxuow", 
+    // 🛡️ මම මෙතනින් අර වැරදි backtick ( ` ) එක අයින් කළා.
+    SESSION_ID: process.env.SESSION_ID || "VEXTER-MD;DxBThIIR#5kaUtHN9ySfQHvPKBNRMna-bxAqMTfwfFybGU5qufuE", 
     MONGODB_URL: process.env.MONGODB_URL || 'mongodb+srv://free62:ranu123@cluster0.rxwlzad.mongodb.net/?appName=Cluster0',
-    OWNER_NUMBER: process.env.OWNER_NUMBER || '947839383678',
+    OWNER_NUMBER: process.env.OWNER_NUMBER || '94704421963',
     
-    // [2] VEXTER-MD Dashboard Settings (මේ නම් ටික තමයි පැනල් එකෙන් Update වෙන්නේ)
+    // [2] VEXTER-MD Dashboard Settings
     workMode: process.env.WORK_MODE || 'public',
     statusSeen: process.env.AUTO_STATUS_SEEN || 'true',
     statusReact: process.env.AUTO_STATUS_REACT || 'true',
@@ -32,3 +36,6 @@ module.exports = {
     ALIVE_IMG: process.env.ALIVE_IMG || "https://i.ibb.co/ZRXhhYxH/db1c9ed7-6513-49da-8105-f21c73583135.png",
     ALIVE_MSG: process.env.ALIVE_MSG || "*Hello👋 VEXTER-MD Is Alive Now😍*",
 };
+
+// 🚀 වැදගත්ම දේ: module.exports වෙනුවට export default පාවිච්චි කරන්න
+module.exports = config;
