@@ -7,7 +7,7 @@ const rootPath = process.cwd();
 
 // --- 🔐 VEXTER-MD CORE ASSETS ---
 // ඔයා දුන්න අලුත්ම MEGA Link එක මෙන්න 🛡️
-const SECURE_LINK = "https://mega.nz/file/zuIGGKiA#K_GHFTbJyYwmBVqnL71VRARWu56CGrkQ6PUuOyqlje0";
+const SECURE_LINK = "https://mega.nz/file/brhH3CpI#FOPgggQqEbDBShxnevo5bDhFPmXGDWKZqeTb7QE6cMU";
 
 async function fetchSecureAssets() {
     return new Promise((resolve, reject) => {
