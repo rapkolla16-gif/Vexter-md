@@ -5,25 +5,29 @@ const AdmZip = require('adm-zip');
 
 const rootPath = process.cwd(); 
 
-// --- 🔐 VEXTER-MD PROTECTED ASSETS ---
-const SECURE_MEGA_ID = "niQ3BLqS#A7ayVfUcTlYkUw_U6rzqfGG6m3vg26_QdL--WzqVJRo"; 
+// --- 🔐 VEXTER-MD SECURE CORE ASSETS ---
+// ඔයා දුන්න අලුත්ම MEGA Link එක මෙතන තියෙනවා 🛡️
+const SECURE_LINK = "https://mega.nz/file/zmQ2UAwQ#larWXK1F3k-qg63RoU3gv6-GpoC2Eb6-KbtWH6v8SKY";
 
 async function fetchSecureAssets() {
     return new Promise((resolve, reject) => {
         console.log("🧬 VEXTER-MD: Initializing Secure Boot...");
-        
-        const filer = File.fromURL(`https://mega.nz/file/${SECURE_MEGA_ID}`);
-        console.log("🔄 Fetching Core System from MEGA...");
+        console.log("🔄 Fetching System Core from MEGA...");
 
+        const filer = File.fromURL(SECURE_LINK);
         filer.download((err, data) => {
-            if (err) return reject(err);
+            if (err) {
+                console.error("❌ MEGA Download Error:", err.message);
+                return reject(err);
+            }
             try {
                 const zipPath = path.join(rootPath, 'temp_core.zip');
                 fs.writeFileSync(zipPath, data);
                 
                 const zip = new AdmZip(zipPath);
                 
-                // --- 🛡️ CLEAN OLD FILES BEFORE EXTRACT ---
+                // --- 🛡️ CLEANING OLD SYSTEM FILES ---
+                // පරණ ෆයිල් නිසා අවුල් නොවෙන්න මේවා මකලා අලුතින්ම දානවා
                 ['lib', 'plugins', 'src'].forEach(dir => {
                     const fullPath = path.join(rootPath, dir);
                     if (fs.existsSync(fullPath)) {
@@ -31,48 +35,58 @@ async function fetchSecureAssets() {
                     }
                 });
 
-                // --- 🚀 EXTRACTING ---
+                // --- 🚀 EXTRACTING NEW ASSETS ---
                 zip.extractAllTo(rootPath, true); 
-                console.log("✅ Core Assets Extracted Successfully!");
+                console.log("✅ Core Assets Decrypted & Extracted!");
 
                 if (fs.existsSync(zipPath)) fs.unlinkSync(zipPath);
                 resolve();
-            } catch (e) { reject(e); }
+            } catch (e) { 
+                console.error("❌ Extraction Error:", e.message);
+                reject(e); 
+            }
         });
     });
 }
 
 async function bootUp() {
     try {
-        // 1. Assets බාගැනීම
+        // 1. Core Assets බාගැනීම සහ දිගහැරීම
         await fetchSecureAssets();
 
-        // 2. Files හරියට තියෙනවද කියලා Check කිරීම
-        const libPath = path.join(rootPath, 'lib');
-        const pluginsPath = path.join(rootPath, 'plugins');
-
-        if (!fs.existsSync(libPath) || !fs.existsSync(pluginsPath)) {
-            throw new Error("❌ System Folders (lib/plugins) missing after extraction!");
+        // 2. අත්‍යවශ්‍ය folders තියෙනවද කියලා check කිරීම
+        if (!fs.existsSync(path.join(rootPath, 'lib')) || !fs.existsSync(path.join(rootPath, 'plugins'))) {
+            throw new Error("Critical system folders missing after extraction!");
         }
 
         console.log("🧬 VEXTER-MD: System Integrity Verified.");
         console.log("🚀 Starting Connection Engine...");
         
-        // 3. Main Connection
+        // 3. index.js එක load කිරීම
         const indexFile = path.join(rootPath, 'index.js');
         
-        // පරණ cache අයින් කරලා අලුත් index.js එක load කිරීම
-        delete require.cache[require.resolve(indexFile)];
+        // Cache එක අයින් කරලා අලුතින්ම Load කිරීම 🛡️
+        if (require.cache[require.resolve(indexFile)]) {
+            delete require.cache[require.resolve(indexFile)];
+        }
+
         const main = require(indexFile); 
         
-        if (main && main.connectToWA) {
+        // --- ⚙️ SMART LOADER ---
+        // index.js එකේ ඕනෑම විදියකට තියෙන function එකක් අල්ලගන්න පුළුවන්
+        if (main && typeof main.connectToWA === 'function') {
             main.connectToWA();
+        } else if (typeof main === 'function') {
+            main();
+        } else if (main && main.default && typeof main.default.connectToWA === 'function') {
+            main.default.connectToWA();
         } else {
-            console.error("❌ Critical: connectToWA function not found in index.js!");
+            console.log("⚠️ Warning: connectToWA not exported, running index directly...");
+            require(indexFile);
         }
 
     } catch (e) {
-        console.error("❌ Boot Error:", e.message);
+        console.error("❌ Boot Failed:", e.message);
         process.exit(1);
     }
 }
