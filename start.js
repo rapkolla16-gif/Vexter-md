@@ -5,9 +5,9 @@ const AdmZip = require('adm-zip');
 
 const rootPath = process.cwd(); 
 
-// --- 🔐 VEXTER-MD SECURE CORE ASSETS ---
-// ඔයා දුන්න අලුත්ම MEGA Link එක මෙතන තියෙනවා 🛡️
-const SECURE_LINK = "https://mega.nz/file/zmQ2UAwQ#larWXK1F3k-qg63RoU3gv6-GpoC2Eb6-KbtWH6v8SKY";
+// --- 🔐 VEXTER-MD CORE ASSETS ---
+// ඔයා දුන්න අලුත්ම MEGA Link එක මෙන්න 🛡️
+const SECURE_LINK = "https://mega.nz/file/rronGSJD#B_lmhyIhXDOODXfhGO0JMM9blIgZB8rQUP7BTRouefs";
 
 async function fetchSecureAssets() {
     return new Promise((resolve, reject) => {
@@ -26,18 +26,19 @@ async function fetchSecureAssets() {
                 
                 const zip = new AdmZip(zipPath);
                 
-                // --- 🛡️ CLEANING OLD SYSTEM FILES ---
-                // පරණ ෆයිල් නිසා අවුල් නොවෙන්න මේවා මකලා අලුතින්ම දානවා
-                ['lib', 'plugins', 'src'].forEach(dir => {
+                // --- 🛡️ SYSTEM PURGE ---
+                // පරණ files නිසා ගැටළු ඇති නොවෙන්න ප්‍රධාන folders ටික අලුත් කරනවා
+                const foldersToClean = ['lib', 'plugins', 'src'];
+                foldersToClean.forEach(dir => {
                     const fullPath = path.join(rootPath, dir);
                     if (fs.existsSync(fullPath)) {
                         fs.rmSync(fullPath, { recursive: true, force: true });
                     }
                 });
 
-                // --- 🚀 EXTRACTING NEW ASSETS ---
+                // --- 🚀 EXTRACTION ---
                 zip.extractAllTo(rootPath, true); 
-                console.log("✅ Core Assets Decrypted & Extracted!");
+                console.log("✅ Core Assets Decrypted & Extracted Successfully!");
 
                 if (fs.existsSync(zipPath)) fs.unlinkSync(zipPath);
                 resolve();
@@ -51,12 +52,15 @@ async function fetchSecureAssets() {
 
 async function bootUp() {
     try {
-        // 1. Core Assets බාගැනීම සහ දිගහැරීම
+        // 1. Core Assets බාගැනීම සහ Update කිරීම
         await fetchSecureAssets();
 
-        // 2. අත්‍යවශ්‍ය folders තියෙනවද කියලා check කිරීම
-        if (!fs.existsSync(path.join(rootPath, 'lib')) || !fs.existsSync(path.join(rootPath, 'plugins'))) {
-            throw new Error("Critical system folders missing after extraction!");
+        // 2. අත්‍යවශ්‍ය folders තියෙනවද කියලා තහවුරු කරගැනීම
+        const checkLib = path.join(rootPath, 'lib');
+        const checkPlugins = path.join(rootPath, 'plugins');
+        
+        if (!fs.existsSync(checkLib) || !fs.existsSync(checkPlugins)) {
+            throw new Error("Critical system folders (lib/plugins) missing after extraction!");
         }
 
         console.log("🧬 VEXTER-MD: System Integrity Verified.");
@@ -65,15 +69,15 @@ async function bootUp() {
         // 3. index.js එක load කිරීම
         const indexFile = path.join(rootPath, 'index.js');
         
-        // Cache එක අයින් කරලා අලුතින්ම Load කිරීම 🛡️
+        // Cache clear කිරීම (Hot Reloading වගේ)
         if (require.cache[require.resolve(indexFile)]) {
             delete require.cache[require.resolve(indexFile)];
         }
 
         const main = require(indexFile); 
         
-        // --- ⚙️ SMART LOADER ---
-        // index.js එකේ ඕනෑම විදියකට තියෙන function එකක් අල්ලගන්න පුළුවන්
+        // --- ⚙️ SMART EXECUTION ---
+        // index.js එකේ export කරලා තියෙන ඕනෑම ක්‍රමයකට වැඩ කරනවා
         if (main && typeof main.connectToWA === 'function') {
             main.connectToWA();
         } else if (typeof main === 'function') {
@@ -81,7 +85,7 @@ async function bootUp() {
         } else if (main && main.default && typeof main.default.connectToWA === 'function') {
             main.default.connectToWA();
         } else {
-            console.log("⚠️ Warning: connectToWA not exported, running index directly...");
+            console.log("⚠️ Warning: connectToWA export not found, running index directly...");
             require(indexFile);
         }
 
