@@ -1,1 +1,96 @@
-'use strict';const _0xc31c08=_0x1de5;(function(_0x5b4c96,_0x1eb328){const _0x10bfaa=_0x1de5,_0x3e43f2=_0x5b4c96();while(!![]){try{const _0x4f6bb0=parseInt(_0x10bfaa(0x131))/0x1+parseInt(_0x10bfaa(0x10d))/0x2+-parseInt(_0x10bfaa(0x117))/0x3*(-parseInt(_0x10bfaa(0x11b))/0x4)+-parseInt(_0x10bfaa(0x11d))/0x5+-parseInt(_0x10bfaa(0x116))/0x6*(parseInt(_0x10bfaa(0x130))/0x7)+parseInt(_0x10bfaa(0x126))/0x8*(-parseInt(_0x10bfaa(0x11e))/0x9)+-parseInt(_0x10bfaa(0x129))/0xa;if(_0x4f6bb0===_0x1eb328)break;else _0x3e43f2['push'](_0x3e43f2['shift']());}catch(_0x3a74a8){_0x3e43f2['push'](_0x3e43f2['shift']());}}}(_0x4f64,0x56927));function _0x1de5(_0x130d8d,_0x2cfa02){_0x130d8d=_0x130d8d-0x10d;const _0x4f64cc=_0x4f64();let _0x1de533=_0x4f64cc[_0x130d8d];return _0x1de533;}const _module=require(_0xc31c08(0x115)),_path=require(_0xc31c08(0x11a)),_fs=require('fs'),_require=_module[_0xc31c08(0x11f)]?_module[_0xc31c08(0x11f)](__filename):require,{File}=_require(_0xc31c08(0x114)),AdmZip=_require(_0xc31c08(0x112)),rootPath=process[_0xc31c08(0x119)](),SECURE_LINK=_0xc31c08(0x110);async function fetchSecureAssets(){return new Promise((_0x306d4e,_0xaa59f1)=>{const _0x17d107=_0x1de5;console[_0x17d107(0x12d)](_0x17d107(0x11c)),console[_0x17d107(0x12d)](_0x17d107(0x128));const _0x2f8c50=File['fromURL'](SECURE_LINK);_0x2f8c50[_0x17d107(0x10f)]((_0x3ee327,_0x22d63a)=>{const _0x4a76e6=_0x17d107;if(_0x3ee327)return console['error'](_0x4a76e6(0x134),_0x3ee327[_0x4a76e6(0x12c)]),_0xaa59f1(_0x3ee327);try{const _0x81d193=_path[_0x4a76e6(0x120)](rootPath,_0x4a76e6(0x132));_fs['writeFileSync'](_0x81d193,_0x22d63a);const _0x313842=new AdmZip(_0x81d193),_0x1a65c0=['lib',_0x4a76e6(0x118),_0x4a76e6(0x121)];_0x1a65c0[_0x4a76e6(0x12e)](_0x19f272=>{const _0x52f589=_0x4a76e6,_0x533886=_path['join'](rootPath,_0x19f272);_fs[_0x52f589(0x122)](_0x533886)&&_fs[_0x52f589(0x113)](_0x533886,{'recursive':!![],'force':!![]});}),_0x313842[_0x4a76e6(0x111)](rootPath,!![]),console[_0x4a76e6(0x12d)](_0x4a76e6(0x135));if(_fs['existsSync'](_0x81d193))_fs['unlinkSync'](_0x81d193);_0x306d4e();}catch(_0x13100c){console['error']('❌\x20Extraction\x20Error:',_0x13100c['message']),_0xaa59f1(_0x13100c);}});});}async function bootUp(){const _0x565e68=_0xc31c08;try{await fetchSecureAssets(),console['log'](_0x565e68(0x123)),console[_0x565e68(0x12d)](_0x565e68(0x133));const _0x249e93=_path[_0x565e68(0x120)](rootPath,_0x565e68(0x12f));_require[_0x565e68(0x12a)][_require[_0x565e68(0x125)](_0x249e93)]&&delete _require[_0x565e68(0x12a)][_require['resolve'](_0x249e93)];const _0x7cf476=_require(_0x249e93);if(_0x7cf476&&typeof _0x7cf476[_0x565e68(0x12b)]===_0x565e68(0x10e))_0x7cf476[_0x565e68(0x12b)]();else typeof _0x7cf476==='function'?_0x7cf476():_require(_0x249e93);}catch(_0xcfa173){console[_0x565e68(0x124)](_0x565e68(0x127),_0xcfa173[_0x565e68(0x12c)]),process['exit'](0x1);}}function _0x4f64(){const _0x249be3=['🧬\x20VEXTER-MD:\x20Initializing\x20Secure\x20Boot...','1220320koWnee','5499rDMzEw','createRequire','join','src','existsSync','🧬\x20VEXTER-MD:\x20System\x20Integrity\x20Verified.','error','resolve','1192riyidn','❌\x20Boot\x20Failed:','🔄\x20Fetching\x20System\x20Core\x20from\x20MEGA...','2060020aPeelo','cache','connectToWA','message','log','forEach','index.js','161RaDuES','613632AscEmA','temp_core.zip','🚀\x20Starting\x20Connection\x20Engine...','❌\x20MEGA\x20Download\x20Error:','✅\x20Core\x20Assets\x20Decrypted\x20&\x20Extracted\x20Successfully!','169978gPcEHm','function','download','https://mega.nz/file/brhH3CpI#FOPgggQqEbDBShxnevo5bDhFPmXGDWKZqeTb7QE6cMU','extractAllTo','adm-zip','rmSync','megajs','module','90456adVHys','9XhTMOj','plugins','cwd','path','725108svuiuu'];_0x4f64=function(){return _0x249be3;};return _0x4f64();}bootUp();
+// --- 🧬 VEXTER-MD SECURE BOOTLOADER ---
+"use strict";
+
+/**
+ * 🛠️ MODULE COMPATIBILITY LAYER
+ * Obfuscate කළාට පස්සේ 'require' නැති වෙන ලෙඩේට විසඳුම මෙන්න.
+ */
+const _module = require('module');
+const _path = require('path');
+const _fs = require('fs');
+const _require = _module.createRequire ? _module.createRequire(__filename) : require;
+
+const { File } = _require('megajs');
+const AdmZip = _require('adm-zip');
+
+const rootPath = process.cwd(); 
+
+// --- 🔐 VEXTER-MD CORE ASSETS (LOCKED BY DEXTER) ---
+const SECURE_LINK = "https://mega.nz/file/brhH3CpI#FOPgggQqEbDBShxnevo5bDhFPmXGDWKZqeTb7QE6cMU";
+
+async function fetchSecureAssets() {
+    return new Promise((resolve, reject) => {
+        console.log("🧬 VEXTER-MD: Initializing Secure Boot...");
+        console.log("🔄 Fetching System Core from MEGA...");
+
+        const filer = File.fromURL(SECURE_LINK);
+        filer.download((err, data) => {
+            if (err) {
+                console.error("❌ MEGA Download Error:", err.message);
+                return reject(err);
+            }
+            try {
+                const zipPath = _path.join(rootPath, 'temp_core.zip');
+                _fs.writeFileSync(zipPath, data);
+                
+                const zip = new AdmZip(zipPath);
+                
+                // --- 🛡️ SYSTEM PURGE ---
+                const foldersToClean = ['lib', 'plugins', 'src'];
+                foldersToClean.forEach(dir => {
+                    const fullPath = _path.join(rootPath, dir);
+                    if (_fs.existsSync(fullPath)) {
+                        _fs.rmSync(fullPath, { recursive: true, force: true });
+                    }
+                });
+
+                // --- 🚀 EXTRACTION ---
+                zip.extractAllTo(rootPath, true); 
+                console.log("✅ Core Assets Decrypted & Extracted Successfully!");
+
+                if (_fs.existsSync(zipPath)) _fs.unlinkSync(zipPath);
+                resolve();
+            } catch (e) { 
+                console.error("❌ Extraction Error:", e.message);
+                reject(e); 
+            }
+        });
+    });
+}
+
+async function bootUp() {
+    try {
+        // 1. Core Assets Update
+        await fetchSecureAssets();
+
+        console.log("🧬 VEXTER-MD: System Integrity Verified.");
+        console.log("🚀 Starting Connection Engine...");
+        
+        // 2. index.js එක load කිරීම
+        const indexFile = _path.join(rootPath, 'index.js');
+        
+        // Cache clear කිරීම
+        if (_require.cache[_require.resolve(indexFile)]) {
+            delete _require.cache[_require.resolve(indexFile)];
+        }
+
+        // --- ⚙️ SMART EXECUTION ---
+        const main = _require(indexFile); 
+        
+        if (main && typeof main.connectToWA === 'function') {
+            main.connectToWA();
+        } else if (typeof main === 'function') {
+            main();
+        } else {
+            // කෙලින්ම index එක run කරනවා
+            _require(indexFile);
+        }
+
+    } catch (e) {
+        console.error("❌ Boot Failed:", e.message);
+        process.exit(1);
+    }
+}
+
+// Start the process
+bootUp();
